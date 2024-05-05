@@ -1,7 +1,7 @@
 const GenerateConsultedMassive = require('./src/helpers/functions/generatedConsultedMassive');
 const sqlAdmin = require('./src/helpers/querySql/sqlAdmin');
-// exports.handler = async (event, context) => {
-const handler = async (event) => {
+exports.handler = async (event, context) => {
+// const handler = async (event) => {
     
     let processPending = null;
     let id_process = null;
@@ -53,43 +53,43 @@ const handler = async (event) => {
 }
 
 // Crear servidor http para poder ejecutar el lambda localmente
-const http = require("http");
+// const http = require("http");
 
-const host = 'localhost';
-const port = 4000;
+// const host = 'localhost';
+// const port = 4000;
 
-const requestListener = async function (req, res) {
+// const requestListener = async function (req, res) {
 
-    res.setHeader("Content-Type", "application/json");
-    const route = req.url.split("?")[0];
-    switch (route) {
-        case "/ejecute/":
-            // obtener las querys que vienen en la url
-            console.log(req.url)
-            let id = null;
-            try {
-                id = req.url.split("?")[1].split("=")[1];                
-            } catch (error) {
-                console.log(error)
-            }
+//     res.setHeader("Content-Type", "application/json");
+//     const route = req.url.split("?")[0];
+//     switch (route) {
+//         case "/ejecute/":
+//             // obtener las querys que vienen en la url
+//             console.log(req.url)
+//             let id = null;
+//             try {
+//                 id = req.url.split("?")[1].split("=")[1];                
+//             } catch (error) {
+//                 console.log(error)
+//             }
 
-            const event = {
-                queryStringParameters: {
-                    id: id
-                }
-            }
-            const response = await handler(event);
-            res.writeHead(200);
-            // res.end(JSON.stringify({message:"Proceso finalizado"}));
-            res.end(response.body);
-            break
-        default:
-            res.writeHead(404);
-            res.end(JSON.stringify({error:"Resource not found"}));
-    }
-};
+//             const event = {
+//                 queryStringParameters: {
+//                     id: id
+//                 }
+//             }
+//             const response = await handler(event);
+//             res.writeHead(200);
+//             // res.end(JSON.stringify({message:"Proceso finalizado"}));
+//             res.end(response.body);
+//             break
+//         default:
+//             res.writeHead(404);
+//             res.end(JSON.stringify({error:"Resource not found"}));
+//     }
+// };
 
-const server = http.createServer(requestListener);
-server.listen(port, host, () => {
-    console.log(`Server is running on http://${host}:${port}`);
-});
+// const server = http.createServer(requestListener);
+// server.listen(port, host, () => {
+//     console.log(`Server is running on http://${host}:${port}`);
+// });
