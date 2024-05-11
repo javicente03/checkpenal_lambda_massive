@@ -1,6 +1,7 @@
 // const createPdfPuppeteer = require("../generatePdf/createPdfPuppeteer");
 const sqlDataBasic = require("../querySql/guardarDatosBasicos");
 const sqlProducts = require("../querySql/sqlProducts");
+const sqlNotifications = require("../querySql/sqlNotifications");
 // const createCSVData = require("./createCSVData");
 const GeneratedConsulted = require("./generatedConsulted");
 const config = require('../../config');
@@ -85,6 +86,15 @@ const GenerateConsultedMassive = async (requestUser, ruts, consultedMassive) => 
             }
             
             await sqlProducts.modifyStatusSearchMassive(consultedMassive.id_data_search_massive_user, 'completed');
+
+            await sqlNotifications.guardarNotificacion({
+                description: `Tu consulta masiva id #${consultedMassive.id_data_search_massive_user} ha sido completada`,
+                read: false,
+                title: 'Consulta masiva',
+                type_icon: 'pdf',
+                userId: requestUser.id,
+                data_search_massive_userId: consultedMassive.id_data_search_massive_user
+            })
 
             const token = Math.random().toString(36).slice(-8);
             await sqlProducts.tokenSearchMassive(token, consultedMassive.id_data_search_massive_user);
