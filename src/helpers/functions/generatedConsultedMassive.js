@@ -93,6 +93,7 @@ const GenerateConsultedMassive = async (requestUser, ruts, consultedMassive) => 
                 title: 'Consulta masiva',
                 type_icon: 'pdf',
                 userId: requestUser.id,
+                type: 'massive',
                 data_search_massive_userId: consultedMassive.id_data_search_massive_user
             })
 
