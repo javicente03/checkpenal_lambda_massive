@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope
+	xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<soap:Body>
+		<CentralDeInformacionResult
+			xmlns="http://dealernet.cl/webservices/">
+			<retcode>1</retcode>
+			<retmsg>Timeout: The operation has timed out (CurrentConnections=4); WS: http://infocloud.cloudservicios.cl/wsinfodealernet.asmx?op=pe_infoext_producto_exec</retmsg>
+			<output>
+				<rut num="11876820" dv="5" nombre="Ramon Antonio Gonzalez Aguilera"
+					xmlns="">
+					<prd cod="3421" gls="Registros De Relacionados" />
+				</rut>
+			</output>
+		</CentralDeInformacionResult>
+	</soap:Body>
+</soap:Envelope>

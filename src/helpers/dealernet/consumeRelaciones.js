@@ -1,6 +1,7 @@
 const config = require("../../config");
 
 const ConsumeSoapRelaciones = async (rut) => {
+    try {
     const rutFirst = rut.split('-')[0]
     const rutLast = rut.split('-')[1]
     // const { curly } = require('node-libcurl');
@@ -65,6 +66,12 @@ const ConsumeSoapRelaciones = async (rut) => {
     const { headers, body, statusCode } = response;
     
     return body;
+    } catch (error) {
+        console.log('ESTOY EN EL CATCH DE CONSUME SOAP RELACIONES', error.message);
+        const fs = require('fs');
+        const data = fs.readFileSync('xmlRelacionados.xml', 'utf8');
+        return data;
+    }
 }
 
 module.exports = ConsumeSoapRelaciones;
